@@ -21,9 +21,8 @@ body {
   justify-content: center;
   align-content: center;
   align-items: center;
-
-  background-color: #2d2d2d;
   height: 100vh;
+  background-color: #2d2d2d;
 }
 body. html {
   margin: 0;
@@ -32,11 +31,10 @@ body. html {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .container {
-  width: 600px;
-  height: 800px;
   background-color: #f2eecb;
   border-radius: 4px;
-
+  width: 600px;
+  height: 800px
   padding: 32px;
 }
 .frame {
