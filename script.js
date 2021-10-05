@@ -2,7 +2,6 @@ const addForm = document.querySelector(".add-form");
 const addInput = document.querySelector(".add-input");
 const todos = document.querySelector(".todos");
 const clearBtn = document.querySelector("#clear-btn");
-console.log(clearBtn);
 
 addForm.addEventListener("submit", addTodo);
 clearBtn.addEventListener("click", clearTodos);

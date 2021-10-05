@@ -39,10 +39,6 @@ body. html {
 }
 .frame {
   border: 1px solid var(--main-black-color);
-  
-
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 .header {
