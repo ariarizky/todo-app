@@ -39,7 +39,7 @@ body. html {
 }
 .frame {
   border: 1px solid var(--main-black-color);
-  height: 100%;
+  
 
   display: flex;
   flex-direction: column;
