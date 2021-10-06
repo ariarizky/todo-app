@@ -36,6 +36,8 @@ function deleteTodo(e) {
 
 function clearTodos(e) {
   e.preventDefault();
-  if (confirm("Apakah anda yakin akan menghapus todo list?"))
+  if (todos.innerHTML === "") {
+    alert("Todo list masih kosong!");
+  } else if (confirm("Apakah anda yakin akan menghapus todo list?"))
     todos.innerHTML = "";
 }
