@@ -112,6 +112,7 @@ body. html {
 }
 .todo {
   position: relative;
+  justify-content: center;
 
   flex: 1 0 auto;
   text-align: center;

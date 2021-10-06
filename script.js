@@ -5,6 +5,7 @@ const clearBtn = document.querySelector("#clear-btn");
 
 addForm.addEventListener("submit", addTodo);
 clearBtn.addEventListener("click", clearTodos);
+todos.addEventListener("click", deleteTodo);
 
 function addTodo(e) {
   e.preventDefault();
@@ -14,12 +15,27 @@ function addTodo(e) {
     const span = document.createElement("span");
     span.className = "todo";
     span.appendChild(document.createTextNode(addInput.value));
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = "fa fa-trash-o";
+    a.id = "delete-todo";
+
+    span.appendChild(a);
+
     todos.appendChild(span);
     addInput.value = "";
+  }
+}
+function deleteTodo(e) {
+  e.preventDefault();
+  if (confirm("Apakah anda yakin akan menghapus todo ini?")) {
+    const parent = e.target.parentElement;
+    parent.remove();
   }
 }
 
 function clearTodos(e) {
   e.preventDefault();
-  todos.innerHTML = "";
+  if (confirm("Apakah anda yakin akan menghapus todo list?"))
+    todos.innerHTML = "";
 }
