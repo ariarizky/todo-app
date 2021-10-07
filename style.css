@@ -121,9 +121,9 @@ body. html {
   width: 100%;
 }
 .todo {
-  position: relative;
-
-  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   text-align: center;
 
   min-height: 36px;
@@ -144,4 +144,5 @@ body. html {
 span {
   justify-content: between;
   align-items: right;
+  padding: 8px;
 }

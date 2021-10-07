@@ -1,7 +1,7 @@
 //kumpulan UI element
 const addForm = document.querySelector(".add-form");
 const addInput = document.querySelector(".add-input");
-const todos = document.querySelector(".todos");
+const todosSelector = document.querySelector(".todos");
 const clearBtn = document.querySelector("#clear-btn");
 
 //kumpulan event listener
@@ -10,14 +10,15 @@ immediateLoadEventListener();
 function immediateLoadEventListener() {
   //mendapatkan todo dari local storage
   document.addEventListener("DOMContentLoaded", getTodos);
+
   // event untuk menambahkan todo
   addForm.addEventListener("submit", addTodo);
 
   // event untuk menghapus semua todo
-
   clearBtn.addEventListener("click", clearTodos);
+
   //event untuk menghapus satu todo
-  todos.addEventListener("click", deleteTodo);
+  todosSelector.addEventListener("click", deleteTodo);
 }
 
 // DOM function
@@ -41,6 +42,7 @@ function getTodos() {
     a.id = "delete-todo";
 
     span.appendChild(a);
+    todosSelector.appendChild(span);
   });
 }
 
@@ -61,7 +63,7 @@ function addTodo(e) {
 
     span.appendChild(a);
 
-    todos.appendChild(span);
+    todosSelector.appendChild(span);
 
     addTodoToLocalStorage(addInput.value);
   }
@@ -91,8 +93,8 @@ function deleteTodo(e) {
 
 function clearTodos(e) {
   e.preventDefault();
-  if (todos.innerHTML === "") {
+  if (todosSelector.innerHTML === "") {
     alert("Todo list masih kosong!");
   } else if (confirm("Apakah anda yakin akan menghapus todo list?"))
-    todos.innerHTML = "";
+    todosSelector.innerHTML = "";
 }
