@@ -5,11 +5,45 @@ const todos = document.querySelector(".todos");
 const clearBtn = document.querySelector("#clear-btn");
 
 //kumpulan event listener
-addForm.addEventListener("submit", addTodo);
-clearBtn.addEventListener("click", clearTodos);
-todos.addEventListener("click", deleteTodo);
+immediateLoadEventListener();
 
-//kumpulan DOM function
+function immediateLoadEventListener() {
+  //mendapatkan todo dari local storage
+  document.addEventListener("DOMContentLoaded", getTodos);
+  // event untuk menambahkan todo
+  addForm.addEventListener("submit", addTodo);
+
+  // event untuk menghapus semua todo
+
+  clearBtn.addEventListener("click", clearTodos);
+  //event untuk menghapus satu todo
+  todos.addEventListener("click", deleteTodo);
+}
+
+// DOM function
+function getTodos() {
+  let todos;
+
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.forEach((todo) => {
+    const span = document.createElement("span");
+    span.className = "todo";
+    span.appendChild(document.createTextNode(todo));
+    const a = document.createElement("a");
+
+    a.className = "fa fa-trash";
+    a.href = "#";
+
+    a.id = "delete-todo";
+
+    span.appendChild(a);
+  });
+}
+
 function addTodo(e) {
   e.preventDefault();
   if (addInput.value === "") {
@@ -32,6 +66,7 @@ function addTodo(e) {
     addTodoToLocalStorage(addInput.value);
   }
 }
+
 function addTodoToLocalStorage(addInputValue) {
   let todos;
 
