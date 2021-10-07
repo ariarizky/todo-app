@@ -1,12 +1,15 @@
+//kumpulan UI element
 const addForm = document.querySelector(".add-form");
 const addInput = document.querySelector(".add-input");
 const todos = document.querySelector(".todos");
 const clearBtn = document.querySelector("#clear-btn");
 
+//kumpulan event listener
 addForm.addEventListener("submit", addTodo);
 clearBtn.addEventListener("click", clearTodos);
 todos.addEventListener("click", deleteTodo);
 
+//kumpulan DOM function
 function addTodo(e) {
   e.preventDefault();
   if (addInput.value === "") {
@@ -25,9 +28,24 @@ function addTodo(e) {
     span.appendChild(a);
 
     todos.appendChild(span);
-    addInput.value = "";
+
+    addTodoToLocalStorage(addInput.value);
   }
 }
+function addTodoToLocalStorage(addInputValue) {
+  let todos;
+
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(addInputValue);
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+  addInput.value = "";
+}
+
 function deleteTodo(e) {
   e.preventDefault();
   if (confirm("Apakah anda yakin akan menghapus todo ini?")) {
