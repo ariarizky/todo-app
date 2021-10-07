@@ -31,16 +31,21 @@ body. html {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  margin-top: 5px;
   background-color: #f2eecb;
   border-radius: 4px;
   width: 600px;
-  height: 800px
+  height: 100%;
   padding: 32px;
 }
+
 .frame {
-  position: sticky;
-  margin: 15px;
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
   border: 1px solid var(--main-black-color);
   border-radius: 4px;
   justify-content: space-between;
@@ -113,9 +118,9 @@ body. html {
 .todos {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .todo {
-  
   position: relative;
 
   flex: 1 0 auto;
@@ -132,4 +137,11 @@ body. html {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+}
+.delete-todo {
+  justify-items: right;
+}
+span {
+  justify-content: between;
+  align-items: right;
 }

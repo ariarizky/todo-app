@@ -16,8 +16,10 @@ function addTodo(e) {
     span.className = "todo";
     span.appendChild(document.createTextNode(addInput.value));
     const a = document.createElement("a");
+
+    a.className = "fa fa-trash";
     a.href = "#";
-    a.className = "fa fa-trash-o";
+
     a.id = "delete-todo";
 
     span.appendChild(a);
