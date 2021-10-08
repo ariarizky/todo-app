@@ -11,6 +11,9 @@ function immediateLoadEventListener() {
   //mendapatkan todo dari local storage
   document.addEventListener("DOMContentLoaded", getTodos);
 
+  //mengosongkan todo di local storage
+  document.addEventListener("DOMContentLoaded", clearTodosStorage);
+
   // event untuk menambahkan todo
   addForm.addEventListener("submit", addTodo);
 
@@ -22,6 +25,7 @@ function immediateLoadEventListener() {
 }
 
 // DOM function
+
 function getTodos() {
   let todos;
 
@@ -43,6 +47,7 @@ function getTodos() {
 
     span.appendChild(a);
     todosSelector.appendChild(span);
+    addTodoToLocalStorage(addInput.value);
   });
 }
 
@@ -98,3 +103,5 @@ function clearTodos(e) {
   } else if (confirm("Apakah anda yakin akan menghapus todo list?"))
     todosSelector.innerHTML = "";
 }
+
+function clearTodosStorage() {}
