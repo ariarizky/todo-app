@@ -11,9 +11,6 @@ function immediateLoadEventListener() {
   //mendapatkan todo dari local storage
   document.addEventListener("DOMContentLoaded", getTodos);
 
-  //mengosongkan todo di local storage
-  document.addEventListener("DOMContentLoaded", clearTodosStorage);
-
   // event untuk menambahkan todo
   addForm.addEventListener("submit", addTodo);
 
@@ -104,6 +101,9 @@ function clearTodos(e) {
     alert("Todo list masih kosong!");
   } else if (confirm("Apakah anda yakin akan menghapus todo list?"))
     todosSelector.innerHTML = "";
+    clearTodosLocalStorage();
 }
 
-function clearTodosStorage() {}
+function clearTodosLocalStorage() {
+  localStorage.clear();
+}
