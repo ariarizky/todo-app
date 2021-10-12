@@ -24,20 +24,11 @@ function immediateLoadEventListener() {
   todosSelector.addEventListener("click", deleteTodo);
 }
 
-// DOM function
-
-function getTodos() {
-  let todos;
-
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("todos"));
-  }
-  todos.forEach((todo) => {
-    const span = document.createElement("span");
+//reusable code
+function createTodoElement(value){
+  const span = document.createElement("span");
     span.className = "todo";
-    span.appendChild(document.createTextNode(todo));
+    span.appendChild(document.createTextNode(value));
     const a = document.createElement("a");
 
     a.className = "fa fa-trash";
@@ -46,8 +37,28 @@ function getTodos() {
     a.id = "delete-todo";
 
     span.appendChild(a);
+
     todosSelector.appendChild(span);
-    addTodoToLocalStorage(addInput.value);
+}
+
+function getItemFromLocalStorage(){
+  let todos;
+
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  return todos;
+
+}
+// DOM function
+
+function getTodos() {
+  const todos = getItemFromLocalStorage();
+  todos.forEach((todo) => {
+    createTodoElement(todo);
+
   });
 }
 
@@ -56,32 +67,14 @@ function addTodo(e) {
   if (addInput.value === "") {
     alert("Input todo terlebih dahulu!!!");
   } else {
-    const span = document.createElement("span");
-    span.className = "todo";
-    span.appendChild(document.createTextNode(addInput.value));
-    const a = document.createElement("a");
-
-    a.className = "fa fa-trash";
-    a.href = "#";
-
-    a.id = "delete-todo";
-
-    span.appendChild(a);
-
-    todosSelector.appendChild(span);
-
+    
+    createTodoElement(addInput.value);
     addTodoToLocalStorage(addInput.value);
   }
 }
 
 function addTodoToLocalStorage(addInputValue) {
-  let todos;
-
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("todos"));
-  }
+  const todos = getItemFromLocalStorage();
   todos.push(addInputValue);
 
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -93,9 +86,13 @@ function deleteTodo(e) {
   if (confirm("Apakah anda yakin akan menghapus todo ini?")) {
     const parent = e.target.parentElement;
     parent.remove();
+    deleteTodoLocalStorage(parent);
   }
 }
+function deleteTodoLocalStorage(deletedElement){
+  const todos = get
 
+}
 function clearTodos(e) {
   e.preventDefault();
   if (todosSelector.innerHTML === "") {
