@@ -58,7 +58,6 @@ function getTodos() {
   const todos = getItemFromLocalStorage();
   todos.forEach((todo) => {
     createTodoElement(todo);
-
   });
 }
 
@@ -90,7 +89,13 @@ function deleteTodo(e) {
   }
 }
 function deleteTodoLocalStorage(deletedElement){
-  const todos = get
+  const todos = getItemFromLocalStorage()//menghapus element parent todo
+  todos .forEach((todo, index) =>{
+    if(deletedElement.firstChild.textContent === todo){
+      todos.splice(index, 1)
+    }
+  })
+  localStorage.setItem("todos", JSON.stringify(todos));
 
 }
 function clearTodos(e) {
