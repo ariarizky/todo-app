@@ -3,6 +3,7 @@ const addForm = document.querySelector(".add-form");
 const addInput = document.querySelector(".add-input");
 const todosSelector = document.querySelector(".todos");
 const clearBtn = document.querySelector("#clear-btn");
+const addHeader = document.querySelector(".add-header");
 
 //kumpulan event listener
 immediateLoadEventListener();
@@ -19,26 +20,29 @@ function immediateLoadEventListener() {
 
   //event untuk menghapus satu todo
   todosSelector.addEventListener("click", deleteTodo);
+
+  //event untuk menyembunyikan add form
+  addHeader.addEventListener("click", hiddenAdd);
 }
 
 //reusable code
-function createTodoElement(value){
+function createTodoElement(value) {
   const span = document.createElement("span");
-    span.className = "todo";
-    span.appendChild(document.createTextNode(value));
-    const a = document.createElement("a");
+  span.className = "todo";
+  span.appendChild(document.createTextNode(value));
+  const a = document.createElement("a");
 
-    a.className = "fa fa-trash";
-    a.href = "#";
+  a.className = "fa fa-trash";
+  a.href = "#";
 
-    a.id = "delete-todo";
+  a.id = "delete-todo";
 
-    span.appendChild(a);
+  span.appendChild(a);
 
-    todosSelector.appendChild(span);
+  todosSelector.appendChild(span);
 }
 
-function getItemFromLocalStorage(){
+function getItemFromLocalStorage() {
   let todos;
 
   if (localStorage.getItem("todos") === null) {
@@ -47,7 +51,6 @@ function getItemFromLocalStorage(){
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   return todos;
-
 }
 // DOM function
 
@@ -63,7 +66,6 @@ function addTodo(e) {
   if (addInput.value === "") {
     alert("Input todo terlebih dahulu!!!");
   } else {
-    
     createTodoElement(addInput.value);
     addTodoToLocalStorage(addInput.value);
   }
@@ -85,15 +87,14 @@ function deleteTodo(e) {
     deleteTodoLocalStorage(parent);
   }
 }
-function deleteTodoLocalStorage(deletedElement){
-  const todos = getItemFromLocalStorage()//menghapus element parent todo
-  todos .forEach((todo, index) =>{
-    if(deletedElement.firstChild.textContent === todo){
-      todos.splice(index, 1)
+function deleteTodoLocalStorage(deletedElement) {
+  const todos = getItemFromLocalStorage(); //menghapus element parent todo
+  todos.forEach((todo, index) => {
+    if (deletedElement.firstChild.textContent === todo) {
+      todos.splice(index, 1);
     }
-  })
+  });
   localStorage.setItem("todos", JSON.stringify(todos));
-
 }
 function clearTodos(e) {
   e.preventDefault();
@@ -101,9 +102,14 @@ function clearTodos(e) {
     alert("Todo list masih kosong!");
   } else if (confirm("Apakah anda yakin akan menghapus todo list?"))
     todosSelector.innerHTML = "";
-    clearTodosLocalStorage();
+  localStorage.clear();
+  addForm.style.display = "none";
+}
+function hiddenAdd() {
+  addForm.style.display = "flex";
 }
 
-function clearTodosLocalStorage() {
+/*function clearTodosLocalStorage() {
   localStorage.clear();
 }
+*/

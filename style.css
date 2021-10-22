@@ -84,13 +84,13 @@ body. html {
   padding: 16px;
 }
 .add-form {
-  display: flex;
+  display: none;
   align-items: flex-start;
 }
 .add-input {
   background: unset;
   border: unset;
-  padding: 0 64px;
+  padding: 0 32px;
 
   flex: 1;
   border-bottom: 1px solid var(--main-red-color);
